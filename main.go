@@ -177,6 +177,7 @@ var commands = []*Command{
 	cmdUninstall,
 	cmdDownload,
 	cmdDevices,
+	cmdScan,
 	cmdList,
 	cmdRepo,
 	cmdSetup,
