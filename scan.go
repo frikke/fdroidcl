@@ -5,6 +5,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"mvdan.cc/fdroidcl/adb"
@@ -33,9 +34,9 @@ func runScan(args []string) error {
 	}
 
 	for _, device := range devices {
-		fmt.Printf("Scanning %s - %s (%s)\n", device.ID, device.Model, device.Product)
+		fmt.Fprintf(os.Stderr, "Scanning %s - %s (%s)\n", device.ID, device.Model, device.Product)
 		scanForPackages(device)
-		fmt.Println("Scan completed without error")
+		fmt.Fprintln(os.Stderr, "Scan completed without error")
 	}
 	return nil
 }
