@@ -4,12 +4,13 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/pelletier/go-toml/v2"
 )
 
 const cmdName = "fdroidcl"
@@ -43,17 +44,17 @@ func mustData() string {
 }
 
 func configPath() string {
-	return filepath.Join(mustData(), "config.json")
+	return filepath.Join(mustData(), "config.toml")
 }
 
 type repo struct {
-	ID      string `json:"id"`
-	URL     string `json:"url"`
-	Enabled bool   `json:"enabled"`
+	ID      string `toml:"id"`
+	URL     string `toml:"url"`
+	Enabled bool   `toml:"enabled"`
 }
 
 type userConfig struct {
-	Repos []repo `json:"repos"`
+	Repos []repo `toml:"repos"`
 }
 
 var config = userConfig{
@@ -79,7 +80,7 @@ func readConfig() error {
 	}
 	defer f.Close()
 	fileConfig := userConfig{}
-	err = json.NewDecoder(f).Decode(&fileConfig)
+	err = toml.NewDecoder(f).Decode(&fileConfig)
 	if err != nil {
 		return err
 	}
