@@ -53,8 +53,15 @@ type repo struct {
 	Enabled bool   `toml:"enabled"`
 }
 
+type setup struct {
+	ID    string   `toml:"id"`
+	Apps  []string `toml:"apps"`
+	Repos []string `toml:"repos"`
+}
+
 type userConfig struct {
-	Repos []repo `toml:"repos"`
+	Repos  []repo  `toml:"repos"`
+	Setups []setup `toml:"setups"`
 }
 
 var config = userConfig{
@@ -70,6 +77,7 @@ var config = userConfig{
 			Enabled: false,
 		},
 	},
+	Setups: []setup{},
 }
 
 func readConfig() error {
@@ -171,6 +179,7 @@ var commands = []*Command{
 	cmdDevices,
 	cmdList,
 	cmdRepo,
+	cmdSetup,
 	cmdClean,
 	cmdDefaults,
 	cmdVersion,
