@@ -45,7 +45,7 @@ Unofficial packages are available on:
 
 ## Commands
 
-```sh
+```text
  update                   Update the index
  search [<regexp...>]     Search available apps
  show <appid...>          Show detailed info about apps
@@ -53,8 +53,10 @@ Unofficial packages are available on:
  uninstall <appid...>     Uninstall an app
  download <appid...>      Download an app
  devices                  List connected devices
+ scan                     Scan for known fdroid apps on a device
  list (categories/users)  List all known values of a kind
  repo                     Manage repositories
+ setups                   Manage setups
  clean                    Clean index and/or cache
  defaults                 Reset to the default settings
  version                  Print version information
@@ -70,16 +72,9 @@ be selected by following the appid with a colon and the version code. The
  fdroidcl install org.quantumbadger.redreader:85
 ```
 
-## Config
-
-You can configure what repositories to use in the `config.json` file. On Linux,
-you will likely find it at `~/.config/fdroidcl/config.json`.
-
-You can run `fdroidcl defaults` to create the config with the default settings.
-
 ### *new: you can manage the repositories now directly via cli*
 
-```sh
+```text
 usage: fdroidcl repo
 
 List, add, remove, enable or disable repositories.
@@ -96,6 +91,41 @@ Modify repositories:
         $ fdroidcl repo enable <NAME>
         $ fdroidcl repo disable <NAME>
 ```
+
+### *new: you can manage automating installs using setups*
+
+```text
+usage: fdroidcl setup
+
+List, add, remove, edit, and import/export setups.
+Setups allow for mass installs onto an android device, excellent for backups.
+
+List setups:
+
+        $ fdroidcl setup                Show all setups
+        $ fdroidcl setup list <NAME>    Show details about one setup
+
+Modify setups:
+        $ fdroidcl setup new <NAME>
+        $ fdroidcl setup remove <NAME>
+        $ fdroidcl setup apply <NAME> 
+        $ fdroidcl setup add-app <NAME> <APP-ID> 
+        $ fdroidcl setup rm-app <NAME> <APP-ID> 
+        $ fdroidcl setup add-repo <NAME> <REPO-NAME>
+        $ fdroidcl setup rm-repo <NAME> <REPO-NAME>
+
+Export setups:
+
+        $ fdroidcl setup import <FILENAME>
+        $ fdroidcl setup export <NAME>
+```
+
+## Config
+
+You can configure what repositories to use in the `config.toml` file. On Linux,
+you will likely find it at `~/.config/fdroidcl/config.toml`.
+
+You can run `fdroidcl defaults` to create the config with the default settings.
 
 ## Advantages over the Android client
 
