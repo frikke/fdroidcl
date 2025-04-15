@@ -2,7 +2,7 @@ module mvdan.cc/fdroidcl
 
 go 1.21.0
 
-toolchain go1.23.0
+toolchain go1.24.2
 
 require (
 	github.com/kr/pretty v0.3.1
