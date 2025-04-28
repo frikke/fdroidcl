@@ -15,7 +15,7 @@ import (
 
 const cmdName = "fdroidcl"
 
-const version = "v0.7.0"
+const version = "v0.8.0"
 
 func subdir(dir, name string) string {
 	p := filepath.Join(dir, name)
