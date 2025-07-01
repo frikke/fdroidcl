@@ -1,10 +1,12 @@
-// Copyright (c) 2015, Daniel Martí <mvdan@mvdan.cc>
+// Copyright (c) 2015, Daniel Martí <mvdan@mvdan.cc> 
+// Copyright (c) 2025, Thomas Dickson <modscrat+git@gmail.com>
 // See LICENSE for licensing information
 
 package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 var cmdRepo = &Command{
@@ -90,6 +92,7 @@ func addRepo(name, url string) error {
 	if repoIndex(name) != -1 {
 		return fmt.Errorf("a repo with the same name \"%s\" exists already", name)
 	}
+	url = strings.Split(url, "?")[0]
 	config.Repos = append(config.Repos, repo{ID: name, URL: url, Enabled: true})
 	return writeConfig(&config)
 }
