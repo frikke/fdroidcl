@@ -219,9 +219,8 @@ func main1() int {
 		cmd.Fset.Init(cmdName, flag.ContinueOnError)
 		cmd.Fset.Usage = cmd.usage
 		if err := cmd.Fset.Parse(args[1:]); err != nil {
-			if err != flag.ErrHelp {
-				fmt.Fprintf(os.Stderr, "flag: %v\n", err)
-				cmd.Fset.Usage()
+			if err == flag.ErrHelp {
+				return 0
 			}
 			return 2
 		}
